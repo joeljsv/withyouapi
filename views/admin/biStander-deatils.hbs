@@ -1,0 +1,123 @@
+
+{{> navbar}}
+<div class="container my-5">
+    <div class="card-body text-center">
+        <h4 class="card-title">Bystander bistanders</h4>
+    </div>
+    <div class="card">
+        <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal"
+            data-target=".bd-example-modal-lg">{{biStander.id}}</button>
+        <table class="table table-hover">
+
+            <tbody>
+                {{!--
+                userId,patientName,patientGender,relatio,causeOfAdmission,admissionDate,admissionTime,expectedDischargeDate,locationAddress,phone,noOfbiStanderReq,joinedUsersCount,joinedUsers,isrjected,isVerified,isExpired,isCompleted,_id,createdAt,updatedAt
+                --}}
+                <tr>
+                    <td>Posted By</td>
+                    <td>{{biStander.userId}}</td>
+                </tr>
+                <tr>
+                    <td>Patient Name</td>
+                    <td>{{biStander.patientName}}</td>
+                </tr>
+                <tr>
+                    <td>Patient Gender</td>
+                    <td>{{biStander.patientGender}}</td>
+                </tr>
+                <tr>
+                    <td>Relation</td>
+                    <td>{{biStander.relation}}</td>
+                </tr>
+                <tr>
+                    <td>Cause Of Admission</td>
+                    <td>{{biStander.causeOfAdmission}}</td>
+                </tr>
+                <tr>
+                    <td>Admission Date</td>
+                    <td>{{biStander.admissionDate}}</td>
+                </tr>
+                <tr>
+                    <td>Admission Time</td>
+                    <td>{{biStander.admissionTime}}</td>
+                </tr>
+                <tr>
+                    <td>Expected Discharge Date</td>
+                    <td>{{biStander.expectedDischargeDate}}</td>
+                </tr>
+                <tr>
+                    <td>Location Address</td>
+                    <td>{{biStander.locationAddress}}</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>{{biStander.phone}}</td>
+                </tr>
+                <tr>
+                    <td>No Of Bystander Required</td>
+                    <td>{{biStander.noOfbiStanderReq}}</td>
+                </tr>
+                <tr>
+                    <td>Joined Users Count</td>
+                    <td>{{biStander.joinedUsersCount}}</td>
+                </tr>
+                
+                <tr>
+                    <td>Is Rejected</td>
+                    <td> {{#if biStander.isRejected}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+                </tr>
+                <tr>
+                    <td>Is Verified</td>
+                   <td> {{#if biStander.isVerified}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+                </tr>
+                <tr>
+                    <td>Is Expired</td>
+                   <td> {{#if biStander.isExpired}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+                </tr>
+                <tr>
+                    <td>Is Completed</td>
+                   <td> {{#if biStander.isCompleted}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+                </tr>
+                <tr>
+                    <td>Created At</td>
+                    <td>{{biStander.createdAt}}</td>
+                </tr>
+                <tr>
+                    <td>Updated At</td>
+                    <td>{{biStander.updatedAt}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table>
+      <tbody>
+       <tr>
+          <td>
+            <a href="/admin/bistander/approve/{{{biStander.id}}}/" class="btn btn-success">Verify</a>
+
+          </td>
+           <td>
+            <a href="/admin/bistander/reject/{{{biStander.id}}}/" class="btn btn-danger">Reject</a>
+
+          </td>
+          
+           <td>
+            <a href="/admin/bistander/complete/{{{biStander.id}}}/" class="btn btn-info">Mark Complete</a>
+
+          </td>
+           <td>
+            <a href="/admin/bistander/incomplete/{{{biStander.id}}}/" class="btn btn-warning">Mark In Complete</a>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <!-- Large modal -->
+    
+
+</div>

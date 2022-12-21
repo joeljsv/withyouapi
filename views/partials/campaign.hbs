@@ -1,0 +1,51 @@
+<div class="container my-5">
+  <div class="card-body text-center">
+    <h4 class="card-title">Fund Campaigns</h4>
+  </div>
+  <div class="card">
+    <button
+      id="add__new__list"
+      type="button"
+      class="btn btn-success position-absolute"
+      data-toggle="modal"
+      data-target=".bd-example-modal-lg"
+    ><i class="fas fa-plus"></i>All Campaigns</button>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+      <th scope="col">SL</th>
+     <th scope="col">Title</th>
+      <th scope="col">Posted By</th>
+      <th scope="col">Posted For</th>
+      <th scope="col">Type</th>
+      <th scope="col">Relation</th>
+      <th scope="col">Target Amount</th>
+      <th scope="col">Raised Amount</th>
+      <th scope="col">Details</th>
+        </tr>
+      </thead>
+     <tbody>
+       {{#each campaigns}}
+
+      <tr>
+        <td>{{sl}}</td>
+          <td>{{title}}</td>
+        <td>{{postedBy}}</td>
+        <td>{{{this.patientName}}}</td>
+        <td>{{{this.type}}}</td>
+        <td>{{{this.relation}}}</td>
+        <td>{{{this.targetAmount}}}</td>
+<td>{{{this.raisedAmount}}}</td>
+        <td>
+          <a href="/admin/campaign/{{{id}}}/" class="btn btn-primary">View</a>
+          
+        </td>
+      </tr>
+    {{/each}}
+     </tbody>
+    </table>
+  </div>
+  <!-- Large modal -->
+
+ 
+</div>

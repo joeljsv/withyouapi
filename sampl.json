@@ -1,0 +1,3 @@
+{
+  userId,patientName,patientGender,relatio,causeOfAdmission,admissionDate,admissionTime,expectedDischargeDate,locationAddress,phone,noOfbiStanderReq,joinedUsersCount,joinedUsers,isrjected,isVerified,isExpired,isCompleted,_id,createdAt,updatedAt
+}

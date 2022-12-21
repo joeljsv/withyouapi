@@ -1,0 +1,53 @@
+<div class="container my-5">
+  <div class="card-body text-center">
+    <h4 class="card-title">Bystander Campaigns</h4>
+  </div>
+  <div class="card">
+    <button
+      id="add__new__list"
+      type="button"
+      class="btn btn-success position-absolute"
+      data-toggle="modal"
+      data-target=".bd-example-modal-lg"
+    ><i class="fas fa-plus"></i>All Campaigns</button>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">SL</th>
+          <th scope="col">Posted By</th>
+          <th scope="col">Patient Name</th>
+          <th scope="col">Posted For</th>
+          <th scope="col">Cause Of Admission</th>
+          <th scope="col">Admission Date</th>
+          <th scope="col">Required Bystanders</th>
+          <th scope="col">Joined Bystanders</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each biStanderCampaigns}}
+
+          <tr>
+            <td>{{sl}}</td>
+            <td>{{postedBy}}</td>
+            <td>{{{this.patientName}}}</td>
+            <td>{{{this.relation}}}</td>
+            <td>{{{this.causeOfAdmission}}}</td>
+            <td>{{{this.admissionDate}}}</td>
+            <td>{{{this.noOfbiStanderReq}}}</td>
+            <td>{{{this.joinedUsersCount}}}</td>
+            <td>
+              <a
+                href="/admin/bistander/{{{id}}}/"
+                class="btn btn-primary"
+              >View</a>
+
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <!-- Large modal -->
+
+</div>

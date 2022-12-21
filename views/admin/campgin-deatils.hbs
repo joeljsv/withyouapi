@@ -1,0 +1,204 @@
+{{> navbar}}
+<div class="container my-5">
+  <div class="card-body text-center">
+    <h4 class="card-title">Details</h4>
+  </div>
+  <div class="card">
+    <button id="add__new__list" type="button" class="btn btn-success position-absolute" data-toggle="modal"
+      data-target=".bd-example-modal-lg">{{campaign.title}}</button>
+    <table class="table table-hover">
+      {{!-- <thead>
+        <tr>
+          <th>Posted By:</th>
+          <td>{{postedBy}}</td>
+        </tr>
+      </thead> --}}
+      <tbody>
+        {{!-- // userId,title,type,patientName,patientAge,
+        --}}
+        <tr>
+          <td><Strong>Posted BY</Strong></td>
+          <td>{{campaign.postedBy}}</td>
+        </tr>
+
+        <tr>
+          <td><Strong>Type</Strong></td>
+          <td>{{campaign.type}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Patient Name</Strong></td>
+          <td>{{campaign.patientName}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Patient Age</Strong></td>
+          <td>{{campaign.patientAge}}</td>
+        </tr>
+        {{!-- populate this feilds
+        patientGender,patientAdhaar,patientRationCardNumber,patientRationCardType,hospitalName,hospitalAddress,isGovHospital,hospitalContact,homeAddress,phone,relation,description,documents:,images,targetAmount,collectedAmount,remainingAmoun,upiID,dueDate,isActive,isApproved,isRejected,isCompleted,noOfUserDonated,usersDonated,isInProgress,_id,createdAt,updatedAt
+        --}}
+        <tr>
+          <td><Strong>Patient Gender</Strong></td>
+          <td>{{campaign.patientGender}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Patient Adhaar</Strong></td>
+          <td>{{campaign.patientAdhaar}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Patient Ration Card Number</Strong></td>
+          <td>{{campaign.patientRationCardNumber}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Patient Ration Card Type</Strong></td>
+          <td>{{campaign.patientRationCardType}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Hospital Name</Strong></td>
+          <td>{{campaign.hospitalName}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Hospital Address</Strong></td>
+          <td>{{campaign.hospitalAddress}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Is Gov Hospital</Strong></td>
+          {{!-- if condition --}}
+          <td> {{#if campaign.isGovHospital}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+          {{!-- <td>{{campaign.isGovHospital}}</td> --}}
+          {{!-- <td>{{campaign.isGovHospital}}</td> --}}
+        </tr>
+        <tr>
+          <td><Strong>Hospital Contact</Strong></td>
+          <td>{{campaign.hospitalContact}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Home Address</Strong></td>
+          <td>{{campaign.homeAddress}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Phone</Strong></td>
+          <td>{{campaign.phone}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Relation</Strong></td>
+          <td>{{campaign.relation}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Description</Strong></td>
+          <td>{{campaign.description}}</td>
+        </tr>
+
+        <tr>
+          <td><Strong>Target Amount</Strong></td>
+          <td>{{campaign.targetAmount}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Collected Amount</Strong></td>
+          <td>{{campaign.collectedAmount}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Remaining Amount</Strong></td>
+          <td>{{campaign.remainingAmount}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Upi ID</Strong></td>
+          <td><i>{{campaign.upiID}}</i></td>
+        </tr>
+        <tr>
+          <td><Strong>Due Date</Strong></td>
+          <td>{{campaign.dueDate}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Is Active</Strong></td>
+          <td> {{#if campaign.isActive}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+        </tr>
+        <tr>
+          <td><Strong>Is Approved</Strong></td>
+          <td> {{#if campaign.isApproved}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+        </tr>
+        <tr>
+          <td><Strong>Is Rejected</Strong></td>
+          <td> {{#if campaign.isRejected}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+        </tr>
+        <tr>
+          <td><Strong>Is Completed</Strong></td>
+          <td> {{#if campaign.isCompleted}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+        </tr>
+        <tr>
+          <td><Strong>No Of User Donated</Strong></td>
+          <td>{{campaign.noOfUserDonated}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Is In Progress</Strong></td>
+
+          <td> {{#if campaign.isInProgress}} <i class="fa-solid fa-circle-check" style="color: green;"></i> {{else}} <i
+              class="fa-solid fa-circle-xmark" style="color: red;"></i> {{/if}} </td>
+        </tr>
+        <tr>
+          <td><Strong>Id</Strong></td>
+          <td>{{campaign._id}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Created At</Strong></td>
+          <td>{{campaign.createdAt}}</td>
+        </tr>
+        <tr>
+          <td><Strong>Updated At</Strong></td>
+          <td>{{campaign.updatedAt}}</td>
+        </tr>
+        
+
+
+
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+       <tr>
+          <td>
+            <a href="/admin/campaign/approve/{{{campaign._id}}}/" class="btn btn-success">Approve</a>
+
+          </td>
+           <td>
+            <a href="/admin/campaign/reject/{{{campaign._id}}}/" class="btn btn-danger">Reject</a>
+
+          </td>
+           <td>
+            <a href="/admin/campaign/active/{{{campaign._id}}}/" class="btn btn-primary">Set Active</a>
+
+          </td>
+           <td>
+            <a href="/admin/campaign/inactive/{{{campaign._id}}}/" class="btn btn-danger"> Set In Active</a>
+
+          </td>
+           <td>
+            <a href="/admin/campaign/complete/{{{campaign._id}}}/" class="btn btn-info">Mark Complete</a>
+
+          </td>
+           <td>
+            <a href="/admin/campaign/incomplete/{{{campaign._id}}}/" class="btn btn-warning">Mark In Complete</a>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card-body text-center">
+      <h4 class="card-title">Documents Submitted</h4>
+    </div>
+    <tr>
+      <td><Strong>Images</Strong></td>
+      <td><img src="{{campaign.images}}" width="70%" height="50%" alt=""></td>
+    </tr>
+    <br>
+    <iframe src={{campaign.documents}} width="100%" height="1000px">
+    </iframe>
+  </div>
+  <!-- Large modal -->
+
+
+</div>
