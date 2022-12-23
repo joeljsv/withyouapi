@@ -27,8 +27,6 @@ exports.createCampaign = async (req, res) => {
       phone,
       relation,
       description,
-      documents,
-      images,
       targetAmount,
       upiID,
       dueDate,

@@ -1,54 +1,70 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const user= require("./controllers/user");
+const user = require("./controllers/user");
 const campaign = require("./controllers/campaign");
 const biStander = require("./controllers/biStander");
 const verifyTokenUser = require("./helpers/auth_midd").verifyTokenUser;
-const multer  = require('multer')
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    if(file.fieldname=="document"){
-      cb(null, __dirname+'/temp/documents')
-    }
-    else if(file.fieldname=="images"){
-    cb(null, __dirname+'/temp/images')}
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    let filename=file.fieldname + '-' + uniqueSuffix+file.originalname.replace(" ","")
-    if(file.fieldname=="document"){
-        req.doc="temp/document/"+filename
-      cb(null, filename)
-    }
-    else if(file.fieldname=="images"){
-        req.imag="temp/images/"+filename
-    cb(null, filename)}
-    
-  }
-})
+const saltedMd5 = require("salted-md5");
+var admin = require("firebase-admin");
 
-const upload = multer({ storage: storage })
+var serviceAccount = require("./key.json");
+const multer = require("multer");
+
+require("dotenv").config();
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://withyouapi-893be.firebaseio.com",
+  storageBucket: process.env.BUCKET_URL,
+});
+
+const upload = multer({ storage: multer.memoryStorage() });
+
+// uplod function
+uplofFile = async (req, res, next) => {
+  try{
+
+  if (!req.files) {
+    res.status(400).send("No files were uploaded.");
+    return;
+  }
+  // get file with feild name
+  let bucket = admin.storage().bucket();
+  let name = saltedMd5(req.files[0].originalname, "SUPER-S@LT!");
+  let fileName = "images"+name + req.files[0].originalname;
+  await bucket.file(fileName).createWriteStream().end(req.files[0].buffer);
+  req.imag=process.env.BUCKET_PUBLIC_URL+fileName+"?alt=media";
+  name = saltedMd5(req.files[1].originalname, "SUPER-S@LT!");
+  fileName = "docu"+name + req.files[1].originalname;
+  await bucket.file(fileName).createWriteStream().end(req.files[1].buffer);
+  req.doc=process.env.BUCKET_PUBLIC_URL+fileName+"?alt=media";
+  next();
+  }catch(err){
+    res.status(400).send("An Error Occured");
+    return;
+  }
+};
 
 // router.get("/items/:id",product.getProductById);
-router.post("/login",user.login);
-router.post("/signup",user.signup);
-router.post("/newcampaign",upload.any(),verifyTokenUser,campaign.createCampaign);
-router.get("/allcampaigns",campaign.getAllActiveCampaigns);
+router.post("/login", user.login);
+router.post("/signup", user.signup);
+router.post(
+  "/newcampaign",
+  upload.any(),
+  uplofFile,
+  verifyTokenUser,
+  campaign.createCampaign
+);
+router.get("/allcampaigns", campaign.getAllActiveCampaigns);
 // donation
-router.post("/donate",verifyTokenUser,campaign.donateToCampaign);
-// new bistander 
-router.post("/newbistander",verifyTokenUser,biStander.createBiStander);
+router.post("/donate", verifyTokenUser, campaign.donateToCampaign);
+// new bistander
+router.post("/newbistander", verifyTokenUser, biStander.createBiStander);
 // get all bistanders
-router.get("/allbistanders",biStander.getVerifiedAndUnexpiredBiStanders);
+router.get("/allbistanders", biStander.getVerifiedAndUnexpiredBiStanders);
 // join bistander
-router.post("/joinbistander",verifyTokenUser,biStander.joinBiStander);
+router.post("/joinbistander", verifyTokenUser, biStander.joinBiStander);
 // remove bistander
-router.post("/removebistander",verifyTokenUser,biStander.removeBiStanderUser);
-
-
-
-
-
-
+router.post("/removebistander", verifyTokenUser, biStander.removeBiStanderUser);
 
 module.exports = router;
