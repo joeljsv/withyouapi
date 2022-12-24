@@ -66,5 +66,6 @@ router.get("/allbistanders", biStander.getVerifiedAndUnexpiredBiStanders);
 router.post("/joinbistander", verifyTokenUser, biStander.joinBiStander);
 // remove bistander
 router.post("/removebistander", verifyTokenUser, biStander.removeBiStanderUser);
+router.get("/profile", verifyTokenUser, user.profile);
 
 module.exports = router;

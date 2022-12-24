@@ -66,3 +66,12 @@ exports.signup = async(req, res) => {
         return apiRsposnses.errorResponse(res, err);
     }
 }
+//  user profile with token
+exports.profile = async(req, res) => {
+    try{
+        let user = await User.findById(req.user);
+        return apiRsposnses.successResponseWithData(res, "user found", user);
+    }catch(err){
+        return apiRsposnses.errorResponse(res, err);
+    }
+}
