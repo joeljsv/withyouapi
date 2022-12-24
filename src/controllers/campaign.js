@@ -276,6 +276,8 @@ exports.donateToCampaign = async (req, res) => {
         // check if donation amount is greater than 0
         if (donationAmount > 0) {
           // add donation amount to campaign amount
+          // add donation amount to campaign collected amount as integer
+          donationAmount = parseInt(donationAmount);
           campaign.collectedAmount += donationAmount;
           campaign.remainingAmount -= donationAmount;
           // check if campaign is completed
