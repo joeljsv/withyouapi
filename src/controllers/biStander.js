@@ -7,8 +7,7 @@ const BiStander = require("../models/biStander");
 exports.createBiStander = async(req, res) => {
     try{
         // get all biStander feilds from body
-        let{patientName,patientGender,relation,causeOfAdmission,admissionDate,admissionTime,expectedDischargeDate,lat,
-            long,locationAddress,phone,noOfbiStanderReq,} = req.body;  
+        let{patientName,patientGender,relation,causeOfAdmission,admissionDate,admissionTime,expectedDischargeDate,locationAddress,phone,noOfbiStanderReq,} = req.body;  
         // create new biStander
         let biStander = new BiStander({
             userId:req.user,
@@ -19,10 +18,6 @@ exports.createBiStander = async(req, res) => {
             admissionDate:admissionDate,
             admissionTime:admissionTime,
             expectedDischargeDate:expectedDischargeDate,
-            location: {
-                lat:lat,
-                long:long
-              },
             locationAddress:locationAddress,
             phone:phone,
             noOfbiStanderReq:noOfbiStanderReq,

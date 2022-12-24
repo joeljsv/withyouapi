@@ -42,16 +42,16 @@ const biStander = new Schema({
   //         required: true,
   //     },
   // ],
-  location: {
-    lat: {
-      type: Number,
-      required: true,
-    },
-    long: {
-      type: Number,
-      required: true,
-    },
-  },
+  // location: {
+  //   lat: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  //   long: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  // },
   locationAddress: {
     type: String,
     required: true,

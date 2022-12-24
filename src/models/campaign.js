@@ -56,16 +56,16 @@ const campaignSchema = new Schema({
     required: true,
   },
 
-  location: {
-    lat: {
-      type: Number,
-      required: true,
-    },
-    long: {
-      type: Number,
-      required: true,
-    },
-  },
+  // location: {
+  //   lat: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  //   long: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  // },
   homeAddress: {
     type: String,
     required: true,
