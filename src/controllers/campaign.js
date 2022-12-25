@@ -235,7 +235,7 @@ exports.getCampaignById = async (req, res) => {
 exports.getCampaignsByUserId = async (req, res) => {
   try {
     // get user id from body
-    let { userId } = req.body;
+    let  userId = req.user;
     // get all campaigns by user id
     let campaigns = await Campaign.find({ userId: userId }).populate(
       "usersDonated"
@@ -256,7 +256,9 @@ exports.donateToCampaign = async (req, res) => {
     // get campaign id from body
     let { campaignId } = req.body;
     // get campaign from db by id
-    let campaign = await Campaign.findById(campaignId).populate("usersDonated").populate("userId");
+    let campaign = await Campaign.findById(campaignId)
+      .populate("usersDonated")
+      .populate("userId");
     // check if campaign is not null
     if (campaign) {
       // get user id from body

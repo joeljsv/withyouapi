@@ -319,4 +319,22 @@ exports.rejectedBiStanderRequest = async(req, res) => {
       }
     }
 //
-
+// get biStander list by user id
+exports.getBiStanderListByUserId = async(req, res) => {
+    try {
+        // get user id from params
+        let userId= req.user;
+        // get biStanders from db
+        let biStanders = await BiStander.find   ({ userId:userId }).populate("userId").populate("joinedUsers");
+        // check if biStanders is not null
+        if (biStanders) {
+            return apiRsposnses.successResponseWithData(res, "biStanders", biStanders);
+        }
+        else {
+            return apiRsposnses.successResponseWithData(res, "biStanders", []);
+        }
+    } catch (err) {
+        return apiRsposnses.errorResponse(res, err);
+    }
+}
+// get joined biStander list by user id
