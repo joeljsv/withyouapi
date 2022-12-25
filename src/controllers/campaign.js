@@ -237,9 +237,7 @@ exports.getCampaignsByUserId = async (req, res) => {
     // get user id from body
     let  userId = req.user;
     // get all campaigns by user id
-    let campaigns = await Campaign.find({ userId: userId }).populate(
-      "usersDonated"
-    ).populate("userId");
+    let campaigns = await Campaign.find({ userId: userId }).populate("userId");
     return apiRsposnses.successResponseWithData(
       res,
       "all campaigns by user id",
