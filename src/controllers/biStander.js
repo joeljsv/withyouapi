@@ -58,7 +58,7 @@ exports.joinBiStander = async(req, res) => {
                     // 
                     // save biStander to db
                     biStander = await biStander.save();
-                    return apiRsposnses.successResponseWithData(res, "Succesfully Removed", biStander);
+                    return apiRsposnses.successResponseWithData(res, "Succesfully Added", biStander);
                 }
             }else{
                 return apiRsposnses.errorResponse(res, "biStander not found");
@@ -338,3 +338,21 @@ exports.getBiStanderListByUserId = async(req, res) => {
     }
 }
 // get joined biStander list by user id
+exports.getJoinedBiStanderListByUserId = async(req, res) => {
+    try {
+        // get user id from params
+        let userId= req.user;
+        // get biStanders from db
+        let biStanders = await BiStander.find({ joinedUsers:userId }).populate("userId").populate("joinedUsers");
+        // check if biStanders is not null
+        if (biStanders) {
+            return apiRsposnses.successResponseWithData(res, "biStanders", biStanders);
+        }
+        else {
+            return apiRsposnses.successResponseWithData(res, "biStanders", []);
+        }
+    } catch (err) {
+        return apiRsposnses.errorResponse(res, err);
+    }
+}
+// get biStander by id 

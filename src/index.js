@@ -69,5 +69,6 @@ router.post("/removebistander", verifyTokenUser, biStander.removeBiStanderUser);
 router.get("/profile", verifyTokenUser, user.profile);
 router.get("/bistandlistbyme", verifyTokenUser, biStander.getBiStanderListByUserId);
 router.get("/campgibbyuserid", verifyTokenUser, campaign.getCampaignsByUserId);
+router.get("/joinedme",verifyTokenUser, biStander.getJoinedBiStanderListByUserId);
 
 module.exports = router;
