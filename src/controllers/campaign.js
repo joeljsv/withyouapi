@@ -239,7 +239,7 @@ exports.getCampaignsByUserId = async (req, res) => {
     // get all campaigns by user id
     let campaigns = await Campaign.find({ userId: userId }).populate(
       "usersDonated"
-    );
+    ).populate("userId");
     return apiRsposnses.successResponseWithData(
       res,
       "all campaigns by user id",
